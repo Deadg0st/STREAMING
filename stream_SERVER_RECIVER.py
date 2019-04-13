@@ -3,6 +3,7 @@ __author__ = 'zhengwang'
 import numpy as np
 import cv2
 import socket
+import datetime
 
 
 class VideoStreamingTest(object):
@@ -36,7 +37,9 @@ class VideoStreamingTest(object):
                     stream_bytes = stream_bytes[last + 2:]
                     image = cv2.imdecode(np.frombuffer(jpg, dtype=np.uint8), cv2.IMREAD_COLOR)
                     cv2.imshow('image', image)
-
+                    a = str(datetime.datetime.now())
+                    t = a + ".png"
+                    cv2.imwrite(t,image)
                     if cv2.waitKey(1) & 0xFF == ord('q'):
                         break
         finally:
